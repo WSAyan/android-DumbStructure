@@ -10,9 +10,6 @@ import retrofit2.http.Query;
  */
 
 public interface ApiInterface {
-    @GET("movie/top_rated")
-    Call<Void> getTopRatedMovies(@Query("api_key") String authCode);
-
-    @GET("movie/{id}")
-    Call<Void> getMovieDetails(@Path("id") int id, @Query("api_key") String authCode);
+    @GET("v1/sources")
+    Call<Void> getNewsSources(@Query("language") String language);
 }
