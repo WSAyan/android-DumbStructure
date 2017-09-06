@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AndroidDumbStructure</string>
+    <string name="title_activity_home_tabbed">F Society</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="news_tab">News List</string>
+    <string name="shelf_tab">Shelf</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
