@@ -1,5 +1,7 @@
 package com.potato.wahidsadique.androiddumbstructure.service;
 
+import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -11,5 +13,5 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
     @GET("v1/sources")
-    Call<Void> getNewsSources(@Query("language") String language);
+    Call<Sources> getNewsSources(@Query("language") String language);
 }
