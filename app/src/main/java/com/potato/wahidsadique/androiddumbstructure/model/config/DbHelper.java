@@ -16,7 +16,14 @@ class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        String createFavouritesSql = "" +
+                "   CREATE TABLE favourites (" +
+                "   id varchar(50), " +
+                "   name varchar(50), " +
+                "   description varchar(200), " +
+                "   url varchar(200)" +
+                "   );";
+        sqLiteDatabase.execSQL(createFavouritesSql);
     }
 
     @Override

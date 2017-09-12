@@ -10,15 +10,18 @@ import android.database.sqlite.SQLiteDatabase;
 public class DbConfig {
     private static final int DB_VERSION = 3;
     private static final String DB_NAME = "db_name";
-    private Context context;
+    private static final String TABLE_FAVOURITES = "favourites";
     private DbHelper dbHelper;
 
     public DbConfig(Context context) {
-        this.context = context;
         this.dbHelper = new DbHelper(context,DB_NAME,null,DB_VERSION);
     }
 
     public SQLiteDatabase getSqLiteDatabase() {
         return dbHelper.getWritableDatabase();
+    }
+
+    public static String getTableFavourites() {
+        return TABLE_FAVOURITES;
     }
 }
