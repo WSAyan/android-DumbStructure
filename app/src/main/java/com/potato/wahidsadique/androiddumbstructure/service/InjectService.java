@@ -10,15 +10,15 @@ import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
  */
 
 public class InjectService {
-    IRestService iRestService;
+    IHttpService iHttpService;
     IDbService iDbService;
 
-    public IRestService getiRestService() {
-        return iRestService;
+    public IHttpService getiHttpService() {
+        return iHttpService;
     }
 
-    public void setiRestService(Context context) {
-        this.iRestService = new RestService(new DbCrud(),new DbConfig(context));
+    public void setiHttpService(Context context) {
+        this.iHttpService = new HttpService(new DbCrud(),new DbConfig(context));
     }
 
     public IDbService getiDbService() {

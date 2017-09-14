@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.potato.wahidsadique.androiddumbstructure.R;
 
-public class ShelfFragment extends Fragment {
+public class NewsShelfFragment extends Fragment {
     private RecyclerView newsShelfRecyclerView;
 
     @Override

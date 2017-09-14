@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsSourceFragment;
-import com.potato.wahidsadique.androiddumbstructure.view.fragment.ShelfFragment;
+import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsShelfFragment;
 
 /**
  * Created by wahid.sadique on 8/30/2017.
@@ -26,7 +26,7 @@ public class HomeTabAdapter extends FragmentPagerAdapter {
             case 0:
                 return new NewsSourceFragment();
             case 1:
-                return new ShelfFragment();
+                return new NewsShelfFragment();
         }
         return null;
     }
