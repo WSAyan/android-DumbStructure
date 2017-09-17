@@ -22,4 +22,14 @@ public class DbService implements IDbService {
         String selectQuery = "SELECT * FROM " + dbConfig.getTableFavourites();
         return dbCrud.selectData(selectQuery,null,dbConfig.getSqLiteDatabase());
     }
+
+    @Override
+    public int markFavourites() {
+        return 0;
+    }
+
+    @Override
+    public int removeFavourites() {
+        return 0;
+    }
 }

@@ -8,4 +8,8 @@ import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 
 public interface IDbService {
     DataTable getFavourites();
+
+    int markFavourites();
+
+    int removeFavourites();
 }

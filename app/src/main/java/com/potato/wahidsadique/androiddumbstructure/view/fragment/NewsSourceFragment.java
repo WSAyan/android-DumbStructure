@@ -4,6 +4,8 @@ package com.potato.wahidsadique.androiddumbstructure.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +14,12 @@ import android.view.ViewGroup;
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsShelfListAdapter;
+import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
 
 
 public class NewsSourceFragment extends Fragment {
     private RecyclerView newsSourceRecyclerView;
     private Context context;
-    private NewsShelfListAdapter newsShelfListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,11 +31,20 @@ public class NewsSourceFragment extends Fragment {
     }
 
     private void initializeWidgets(View view) {
-        newsSourceRecyclerView =  view.findViewById(R.id.source_list_recyclerView);
+        newsSourceRecyclerView = (RecyclerView) view.findViewById(R.id.source_list_recyclerView);
     }
 
     private void initializeData() {
         context = getActivity();
+    }
+
+    private void createList() {
+        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
+        newsSourceRecyclerView.setLayoutManager(layoutManager);
+        newsSourceRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        newsSourceRecyclerView.setAdapter(newsSourceListAdapter);
+        newsSourceListAdapter.notifyDataSetChanged();
     }
 
     @Override
