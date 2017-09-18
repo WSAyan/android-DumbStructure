@@ -1,5 +1,10 @@
 package com.potato.wahidsadique.androiddumbstructure.service;
 
+
+
+import android.os.Handler;
+import android.util.Log;
+
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DbCrud;
 import com.potato.wahidsadique.androiddumbstructure.model.config.ApiClient;
 import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
@@ -8,11 +13,9 @@ import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-import java.util.logging.StreamHandler;
+
+
+
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
-import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
-import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsShelfListAdapter;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
 
 
@@ -39,17 +37,13 @@ public class NewsSourceFragment extends Fragment {
     }
 
     private void createList() {
-        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
-        newsSourceRecyclerView.setLayoutManager(layoutManager);
-        newsSourceRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        newsSourceRecyclerView.setAdapter(newsSourceListAdapter);
-        newsSourceListAdapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        createList();
     }
 
     @Override

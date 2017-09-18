@@ -1,6 +1,7 @@
 package com.potato.wahidsadique.androiddumbstructure.view.adapter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,21 +23,16 @@ import java.util.Stack;
 
 public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAdapter.ViewHolder> {
     private Context context;
-    private InjectService injectService;
-    private DataTable dataTable;
     private List<Source> sources = new ArrayList<>();
 
-    public NewsSourceListAdapter(Context context) {
+    public NewsSourceListAdapter(Context context, List<Source> sources) {
         this.context = context;
-        injectService = new InjectService();
-        injectService.setiDbService(context);
-        dataTable = injectService.getiDbService().getFavourites();
-        sources = injectService.getiHttpService().getSourceList();
+        this.sources = sources;
     }
 
     @Override
     public NewsSourceListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_shelf_item,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_shelf_item, parent, false);
         return new NewsSourceListAdapter.ViewHolder(itemView);
     }
 
@@ -52,6 +48,7 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
+
         public ViewHolder(View itemView) {
             super(itemView);
             initializeWidgets(itemView);

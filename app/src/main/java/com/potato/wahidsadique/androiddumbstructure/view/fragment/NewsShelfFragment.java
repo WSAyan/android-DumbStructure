@@ -3,6 +3,7 @@ package com.potato.wahidsadique.androiddumbstructure.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,11 +14,19 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
+import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
+import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
+import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
+
+import java.util.List;
 
 public class NewsShelfFragment extends Fragment {
     private RecyclerView newsShelfRecyclerView;
     private Context context;
+    private InjectService injectService;
+    private DataTable dataTable;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +34,6 @@ public class NewsShelfFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_shelf, container, false);
         initializeWidgets(view);
         initializeData();
-        createList();
         return view;
     }
 
@@ -35,11 +43,15 @@ public class NewsShelfFragment extends Fragment {
 
     private void initializeData() {
         context = getActivity();
+        injectService = new InjectService();
+        injectService.setiDbService(context);
+        injectService.setiHttpService(context);
+        dataTable = injectService.getiDbService().getFavourites();
     }
 
 
-    private void createList() {
-        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context);
+    private void createList(List<Source> sources) {
+        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context,sources);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         newsShelfRecyclerView.setLayoutManager(layoutManager);
         newsShelfRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -50,6 +62,14 @@ public class NewsShelfFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                createList(injectService.getiHttpService().getSourceList());
+            }
+        },3000);
     }
 
     @Override
