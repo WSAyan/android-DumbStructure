@@ -8,7 +8,7 @@ import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
  * Created by wahid.sadique on 9/11/2017.
  */
 
-public class DbService implements IDbService {
+public class DbService implements DbInterface {
     private DbCrud dbCrud;
     private DbConfig dbConfig;
 

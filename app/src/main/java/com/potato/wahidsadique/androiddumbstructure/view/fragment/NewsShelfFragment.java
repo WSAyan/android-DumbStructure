@@ -16,16 +16,22 @@ import android.view.animation.AlphaAnimation;
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
+import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
+import com.potato.wahidsadique.androiddumbstructure.service.ApiInterface;
+import com.potato.wahidsadique.androiddumbstructure.service.DbInterface;
 import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class NewsShelfFragment extends Fragment {
     private RecyclerView newsShelfRecyclerView;
     private Context context;
     private InjectService injectService;
-    private DataTable dataTable;
 
 
     @Override
@@ -43,10 +49,7 @@ public class NewsShelfFragment extends Fragment {
 
     private void initializeData() {
         context = getActivity();
-        injectService = new InjectService();
-        injectService.setiDbService(context);
-        injectService.setiHttpService(context);
-        dataTable = injectService.getiDbService().getFavourites();
+        injectService = new InjectService(context);
     }
 
 
@@ -62,14 +65,19 @@ public class NewsShelfFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        Call<Sources> call = injectService.getApiInterface().getNewsSources("en");
+        call.enqueue(new Callback<Sources>() {
             @Override
-            public void run() {
-
-                createList(injectService.getiHttpService().getSourceList());
+            public void onResponse(Call<Sources> call, Response<Sources> response) {
+                createList(response.body().getSources());
             }
-        },3000);
+
+            @Override
+            public void onFailure(Call<Sources> call, Throwable t) {
+
+            }
+        });
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.potato.wahidsadique.androiddumbstructure.service;
 import android.content.Context;
 
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DbCrud;
+import com.potato.wahidsadique.androiddumbstructure.model.config.ApiClient;
 import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
 
 /**
@@ -10,22 +11,21 @@ import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
  */
 
 public class InjectService {
-    IHttpService iHttpService;
-    IDbService iDbService;
+    private Context context;
+    private ApiInterface apiInterface;
+    private DbInterface dbInterface;
 
-    public IHttpService getiHttpService() {
-        return iHttpService;
+    public InjectService(Context context) {
+        this.context = context;
+        this.apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        this.dbInterface = new DbService(new DbCrud(),new DbConfig(context));
     }
 
-    public void setiHttpService(Context context) {
-        this.iHttpService = new HttpService(new DbCrud(),new DbConfig(context));
+    public ApiInterface getApiInterface() {
+        return apiInterface;
     }
 
-    public IDbService getiDbService() {
-        return iDbService;
-    }
-
-    public void setiDbService(Context context) {
-        this.iDbService = new DbService(new DbCrud(), new DbConfig(context));
+    public DbInterface getDbInterface() {
+        return dbInterface;
     }
 }

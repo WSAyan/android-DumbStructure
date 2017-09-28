@@ -6,7 +6,7 @@ import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
  * Created by wahid.sadique on 8/30/2017.
  */
 
-public interface IDbService {
+public interface DbInterface {
     DataTable getFavourites();
 
     int markFavourites();
