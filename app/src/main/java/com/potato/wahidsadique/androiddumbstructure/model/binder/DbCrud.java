@@ -34,11 +34,13 @@ public class DbCrud {
         long status = -500;
         String table = dataTable.getTableName();
         sqLiteDatabase.beginTransaction();
-        ;
         for (DataRow dataRow : dataTable) {
             ContentValues contentValues = dataRow.getContentValues();
             status = sqLiteDatabase.insert(table, null, contentValues);
         }
+        sqLiteDatabase.setTransactionSuccessful();
+        sqLiteDatabase.endTransaction();
+        sqLiteDatabase.close();
         return (int) status;
     }
 

@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
@@ -19,35 +21,55 @@ import java.util.ArrayList;
 public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdapter.ViewHolder> {
     private Context context;
     private InjectService injectService;
-    private DataTable dataTable;
+    private DataTable dataTable = new DataTable();
 
     public NewsShelfListAdapter(Context context) {
         this.context = context;
-        injectService = new InjectService();
-        injectService.setiDbService(context);
-        dataTable = injectService.getiDbService().getFavourites();
+        this.injectService = new InjectService(context);
+        this.dataTable = injectService.getDbInterface().getFavourites();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_shelf_item,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_shelf_item, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        final String id = dataTable.get(position).get("id").toString();
+        final String name = dataTable.get(position).get("name").toString();
+        final String description = dataTable.get(position).get("description").toString();
+        final String url = dataTable.get(position).get("url").toString();
+        holder.nameTextView.setText(name);
+        holder.descriptionTextView.setText(description);
+        holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                injectService.getDbInterface().removeFavourites(id);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dataTable.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView nameTextView, descriptionTextView;
+        ImageView deleteImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            initializeWidgets(itemView);
+        }
+
+        private void initializeWidgets(View itemView) {
+            nameTextView = (TextView) itemView.findViewById(R.id.shelf_item_name_textView);
+            descriptionTextView = (TextView) itemView.findViewById(R.id.shelf_item_description_textView);
+            deleteImageView = (ImageView) itemView.findViewById(R.id.shelf_item_delete_imageView);
         }
     }
 }

@@ -9,7 +9,7 @@ import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 public interface DbInterface {
     DataTable getFavourites();
 
-    int markFavourites();
+    int markFavourites(String id, String name, String description, String url);
 
-    int removeFavourites();
+    int removeFavourites(String id);
 }

@@ -20,6 +20,7 @@ import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
 import com.potato.wahidsadique.androiddumbstructure.service.ApiInterface;
 import com.potato.wahidsadique.androiddumbstructure.service.DbInterface;
 import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
+import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsShelfListAdapter;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
 
 import java.util.List;
@@ -53,30 +54,19 @@ public class NewsShelfFragment extends Fragment {
     }
 
 
-    private void createList(List<Source> sources) {
-        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context,sources);
+    private void createList() {
+        NewsShelfListAdapter newsShelfListAdapter = new NewsShelfListAdapter(context);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         newsShelfRecyclerView.setLayoutManager(layoutManager);
         newsShelfRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        newsShelfRecyclerView.setAdapter(newsSourceListAdapter);
-        newsSourceListAdapter.notifyDataSetChanged();
+        newsShelfRecyclerView.setAdapter(newsShelfListAdapter);
+        newsShelfListAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Call<Sources> call = injectService.getApiInterface().getNewsSources("en");
-        call.enqueue(new Callback<Sources>() {
-            @Override
-            public void onResponse(Call<Sources> call, Response<Sources> response) {
-                createList(response.body().getSources());
-            }
-
-            @Override
-            public void onFailure(Call<Sources> call, Throwable t) {
-
-            }
-        });
+        createList();
 
     }
 
