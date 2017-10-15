@@ -1,4 +1,4 @@
-package com.potato.wahidsadique.androiddumbstructure.service;
+package com.potato.wahidsadique.androiddumbstructure.presenter;
 
 import android.content.Context;
 
@@ -10,15 +10,13 @@ import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
  * Created by wahid.sadique on 9/12/2017.
  */
 
-public class InjectService {
-    private Context context;
+public class InjectPresenter {
     private ApiInterface apiInterface;
     private DbInterface dbInterface;
 
-    public InjectService(Context context) {
-        this.context = context;
+    public InjectPresenter(Context context) {
         this.apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        this.dbInterface = new DbService(new DbCrud(),new DbConfig(context));
+        this.dbInterface = new DbRepository(new DbCrud(),new DbConfig(context));
     }
 
     public ApiInterface getApiInterface() {

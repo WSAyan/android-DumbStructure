@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
-import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
-
-import java.util.ArrayList;
+import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
 
 /**
  * Created by wahid.sadique on 9/14/2017.
@@ -20,13 +18,13 @@ import java.util.ArrayList;
 
 public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdapter.ViewHolder> {
     private Context context;
-    private InjectService injectService;
+    private InjectPresenter injectPresenter;
     private DataTable dataTable = new DataTable();
 
     public NewsShelfListAdapter(Context context) {
         this.context = context;
-        this.injectService = new InjectService(context);
-        this.dataTable = injectService.getDbInterface().getFavourites();
+        this.injectPresenter = new InjectPresenter(context);
+        this.dataTable = injectPresenter.getDbInterface().getFavourites();
     }
 
     @Override
@@ -46,7 +44,7 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                injectService.getDbInterface().removeFavourites(id);
+                injectPresenter.getDbInterface().removeFavourites(id);
                 notifyDataSetChanged();
             }
         });

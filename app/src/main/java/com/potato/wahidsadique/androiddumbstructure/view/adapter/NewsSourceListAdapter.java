@@ -1,8 +1,6 @@
 package com.potato.wahidsadique.androiddumbstructure.view.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
-import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
-import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
-import com.potato.wahidsadique.androiddumbstructure.view.activity.HomeTabActivity;
+import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Created by wahid.sadique on 9/17/2017.
@@ -27,12 +22,12 @@ import java.util.Stack;
 public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAdapter.ViewHolder> {
     private Context context;
     private List<Source> sources = new ArrayList<>();
-    private InjectService injectService;
+    private InjectPresenter injectPresenter;
 
     public NewsSourceListAdapter(Context context, List<Source> sources) {
         this.context = context;
         this.sources = sources;
-        this.injectService = new InjectService(context);
+        this.injectPresenter = new InjectPresenter(context);
     }
 
     @Override
@@ -52,7 +47,7 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
         holder.favImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                injectService.getDbInterface().markFavourites(id, name, description, url);
+                injectPresenter.getDbInterface().markFavourites(id, name, description, url);
                 notifyDataSetChanged();
             }
         });

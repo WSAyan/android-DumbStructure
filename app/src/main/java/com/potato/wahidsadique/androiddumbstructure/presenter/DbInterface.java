@@ -1,4 +1,4 @@
-package com.potato.wahidsadique.androiddumbstructure.service;
+package com.potato.wahidsadique.androiddumbstructure.presenter;
 
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 

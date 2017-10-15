@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
-import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
+import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class NewsSourceFragment extends Fragment {
     private RecyclerView newsSourceRecyclerView;
     private Context context;
-    private InjectService injectService;
+    private InjectPresenter injectPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +44,7 @@ public class NewsSourceFragment extends Fragment {
 
     private void initializeData() {
         context = getActivity();
-        injectService = new InjectService(context);
+        injectPresenter = new InjectPresenter(context);
     }
 
     private void createList(List<Source> sources) {
@@ -59,7 +59,7 @@ public class NewsSourceFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Call<Sources> call = injectService.getApiInterface().getNewsSources("en");
+        Call<Sources> call = injectPresenter.getApiInterface().getNewsSources("en");
         call.enqueue(new Callback<Sources>() {
             @Override
             public void onResponse(Call<Sources> call, Response<Sources> response) {

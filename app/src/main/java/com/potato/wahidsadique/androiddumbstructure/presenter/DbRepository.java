@@ -1,4 +1,4 @@
-package com.potato.wahidsadique.androiddumbstructure.service;
+package com.potato.wahidsadique.androiddumbstructure.presenter;
 
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataRow;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
@@ -9,11 +9,11 @@ import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
  * Created by wahid.sadique on 9/11/2017.
  */
 
-public class DbService implements DbInterface {
+public class DbRepository implements DbInterface {
     private DbCrud dbCrud;
     private DbConfig dbConfig;
 
-    public DbService(DbCrud dbCrud, DbConfig dbConfig) {
+    public DbRepository(DbCrud dbCrud, DbConfig dbConfig) {
         this.dbCrud = dbCrud;
         this.dbConfig = dbConfig;
     }

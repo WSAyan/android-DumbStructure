@@ -3,7 +3,6 @@ package com.potato.wahidsadique.androiddumbstructure.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,28 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
-import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
-import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
-import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
-import com.potato.wahidsadique.androiddumbstructure.service.ApiInterface;
-import com.potato.wahidsadique.androiddumbstructure.service.DbInterface;
-import com.potato.wahidsadique.androiddumbstructure.service.InjectService;
+import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsShelfListAdapter;
-import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class NewsShelfFragment extends Fragment {
     private RecyclerView newsShelfRecyclerView;
     private Context context;
-    private InjectService injectService;
+    private InjectPresenter injectPresenter;
 
 
     @Override
@@ -50,7 +36,7 @@ public class NewsShelfFragment extends Fragment {
 
     private void initializeData() {
         context = getActivity();
-        injectService = new InjectService(context);
+        injectPresenter = new InjectPresenter(context);
     }
 
 
