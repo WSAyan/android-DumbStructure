@@ -1,5 +1,7 @@
 package com.potato.wahidsadique.androiddumbstructure.utility;
 
+import android.util.Patterns;
+
 /**
  * Created by wahid.sadique on 10/16/2017.
  */
@@ -7,10 +9,10 @@ package com.potato.wahidsadique.androiddumbstructure.utility;
 public class Validator {
 
     public static boolean emailValidator(String emailAddress) {
-        return !(emailAddress == null || emailAddress.isEmpty()) && android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
+        return !(emailAddress == null || emailAddress.isEmpty()) && Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
     }
 
     public static boolean phoneNumberValidator(String phoneNumber) {
-        return !(phoneNumber == null || phoneNumber.isEmpty()) && android.util.Patterns.PHONE.matcher(phoneNumber).matches();
+        return !(phoneNumber == null || phoneNumber.isEmpty()) && Patterns.PHONE.matcher(phoneNumber).matches();
     }
 }
