@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
+import android.view.ViewGroup;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsSourceFragment;
@@ -15,20 +17,30 @@ import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsShelfFragm
 
 public class HomeTabAdapter extends FragmentPagerAdapter {
     private Context context;
-    public HomeTabAdapter(FragmentManager fm,Context context) {
+
+    public HomeTabAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
 
+
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        Fragment fragment = null;
+        switch (position) {
             case 0:
-                return new NewsSourceFragment();
+                fragment = new NewsSourceFragment();
+                break;
             case 1:
-                return new NewsShelfFragment();
+                fragment = new NewsShelfFragment();
+                break;
         }
-        return null;
+        return fragment;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
     }
 
     @Override

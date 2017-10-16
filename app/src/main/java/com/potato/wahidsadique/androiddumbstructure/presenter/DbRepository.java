@@ -20,7 +20,7 @@ public class DbRepository implements DbInterface {
 
     @Override
     public DataTable getFavourites() {
-        String selectQuery = "SELECT * FROM " + dbConfig.getTableFavourites();
+        String selectQuery = "SELECT * FROM " + DbConfig.getTableFavourites();
         return dbCrud.selectData(selectQuery, null, dbConfig.getSqLiteDatabase());
     }
 

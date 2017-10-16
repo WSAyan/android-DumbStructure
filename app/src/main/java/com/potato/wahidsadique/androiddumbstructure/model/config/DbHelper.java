@@ -18,7 +18,7 @@ class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createFavouritesSql = "" +
                 "   CREATE TABLE " + DbConfig.getTableFavourites() + " (" +
-                "   id varchar(50), " +
+                "   id varchar(50) UNIQUE, " +
                 "   name varchar(50), " +
                 "   description varchar(200), " +
                 "   url varchar(200)" +

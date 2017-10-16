@@ -15,29 +15,47 @@ import android.view.ViewGroup;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.view.adapter.HomeTabAdapter;
+import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsShelfFragment;
+import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsSourceFragment;
 
 public class HomeTabActivity extends AppCompatActivity {
     private HomeTabAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private Context context;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_tab);
+        initializeWidgets();
+        initializeData();
+        eventListeners();
+    }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void initializeWidgets() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+    }
+
+    private void initializeData() {
         setSupportActionBar(toolbar);
+
         context = this;
         mSectionsPagerAdapter = new HomeTabAdapter(getSupportFragmentManager(),context);
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        assert mViewPager != null;
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        assert tabLayout != null;
         tabLayout.setupWithViewPager(mViewPager);
     }
 
+    private void eventListeners() {
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

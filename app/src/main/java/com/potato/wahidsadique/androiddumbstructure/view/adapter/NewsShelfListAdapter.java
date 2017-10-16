@@ -34,7 +34,7 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final String id = dataTable.get(position).get("id").toString();
         final String name = dataTable.get(position).get("name").toString();
         final String description = dataTable.get(position).get("description").toString();
@@ -44,8 +44,11 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                injectPresenter.getDbInterface().removeFavourites(id);
-                notifyDataSetChanged();
+                int status = injectPresenter.getDbInterface().removeFavourites(id);
+                if(status > 0){
+                    dataTable.remove(position);
+                    notifyDataSetChanged();
+                }
             }
         });
     }

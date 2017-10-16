@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
@@ -19,7 +21,6 @@ public class NewsShelfFragment extends Fragment {
     private RecyclerView newsShelfRecyclerView;
     private Context context;
     private InjectPresenter injectPresenter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,11 +50,20 @@ public class NewsShelfFragment extends Fragment {
         newsShelfListAdapter.notifyDataSetChanged();
     }
 
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (context != null) {
+            createList();
+        }
+
+    }
+
     @Override
     public void onStart() {
         super.onStart();
         createList();
-
     }
 
     @Override
