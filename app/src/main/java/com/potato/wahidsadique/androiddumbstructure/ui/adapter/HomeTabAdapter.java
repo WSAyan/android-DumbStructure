@@ -1,15 +1,13 @@
-package com.potato.wahidsadique.androiddumbstructure.view.adapter;
+package com.potato.wahidsadique.androiddumbstructure.ui.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
-import android.view.ViewGroup;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
-import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsSourceFragment;
-import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsShelfFragment;
+import com.potato.wahidsadique.androiddumbstructure.ui.fragment.NewsSourceFragment;
+import com.potato.wahidsadique.androiddumbstructure.ui.fragment.NewsShelfFragment;
 
 /**
  * Created by wahid.sadique on 8/30/2017.

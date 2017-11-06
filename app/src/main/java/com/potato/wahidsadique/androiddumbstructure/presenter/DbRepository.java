@@ -3,7 +3,7 @@ package com.potato.wahidsadique.androiddumbstructure.presenter;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataRow;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DbCrud;
-import com.potato.wahidsadique.androiddumbstructure.model.config.DbConfig;
+import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
 
 /**
  * Created by wahid.sadique on 9/11/2017.

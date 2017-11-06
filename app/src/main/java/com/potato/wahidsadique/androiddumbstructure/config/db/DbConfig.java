@@ -1,4 +1,4 @@
-package com.potato.wahidsadique.androiddumbstructure.model.config;
+package com.potato.wahidsadique.androiddumbstructure.config.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

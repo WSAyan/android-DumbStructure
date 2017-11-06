@@ -1,22 +1,16 @@
-package com.potato.wahidsadique.androiddumbstructure.view.activity;
+package com.potato.wahidsadique.androiddumbstructure.ui.activity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
-import com.potato.wahidsadique.androiddumbstructure.view.adapter.HomeTabAdapter;
-import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsShelfFragment;
-import com.potato.wahidsadique.androiddumbstructure.view.fragment.NewsSourceFragment;
+import com.potato.wahidsadique.androiddumbstructure.ui.adapter.HomeTabAdapter;
 
 public class HomeTabActivity extends AppCompatActivity {
     private HomeTabAdapter mSectionsPagerAdapter;

@@ -1,4 +1,4 @@
-package com.potato.wahidsadique.androiddumbstructure.view.activity;
+package com.potato.wahidsadique.androiddumbstructure.ui.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

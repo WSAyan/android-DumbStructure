@@ -1,4 +1,4 @@
-package com.potato.wahidsadique.androiddumbstructure.view.fragment;
+package com.potato.wahidsadique.androiddumbstructure.ui.fragment;
 
 
 import android.content.Context;
@@ -15,7 +15,7 @@ import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
 import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
-import com.potato.wahidsadique.androiddumbstructure.view.adapter.NewsSourceListAdapter;
+import com.potato.wahidsadique.androiddumbstructure.ui.adapter.NewsSourceListAdapter;
 
 import java.util.List;
 

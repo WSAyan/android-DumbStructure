@@ -1,4 +1,4 @@
-package com.potato.wahidsadique.androiddumbstructure.model.config;
+package com.potato.wahidsadique.androiddumbstructure.config.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
