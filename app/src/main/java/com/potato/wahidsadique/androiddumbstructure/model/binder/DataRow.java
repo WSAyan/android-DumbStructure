@@ -17,7 +17,7 @@ public class DataRow extends HashMap<String, Object> {
         return put(column, value);
     }
 
-    ContentValues getContentValues() {
+    public ContentValues getContentValues() {
         ContentValues contentValues = new ContentValues();
         for (Entry entry : this.entrySet()) {
             if (entry.getValue() == null) {

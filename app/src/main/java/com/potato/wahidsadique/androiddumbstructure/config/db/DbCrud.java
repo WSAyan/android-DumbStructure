@@ -1,8 +1,11 @@
-package com.potato.wahidsadique.androiddumbstructure.model.binder;
+package com.potato.wahidsadique.androiddumbstructure.config.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.potato.wahidsadique.androiddumbstructure.model.binder.DataRow;
+import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 
 /**
  * Created by wahid.sadique on 8/30/2017.
@@ -25,6 +28,7 @@ public class DbCrud {
                     }
                 } while (cursor.moveToNext());
             }
+            cursor.close();
         }
         sqLiteDatabase.close();
         return dataTable;

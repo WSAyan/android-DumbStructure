@@ -2,7 +2,7 @@ package com.potato.wahidsadique.androiddumbstructure.presenter;
 
 import android.content.Context;
 
-import com.potato.wahidsadique.androiddumbstructure.model.binder.DbCrud;
+import com.potato.wahidsadique.androiddumbstructure.config.db.DbCrud;
 import com.potato.wahidsadique.androiddumbstructure.config.api.ApiClient;
 import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
 
