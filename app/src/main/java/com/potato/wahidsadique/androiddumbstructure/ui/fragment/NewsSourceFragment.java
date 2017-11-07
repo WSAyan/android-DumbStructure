@@ -44,11 +44,11 @@ public class NewsSourceFragment extends Fragment {
 
     private void initializeData() {
         context = getActivity();
-        injectPresenter = new InjectPresenter(context);
+        injectPresenter = new InjectPresenter();
     }
 
     private void createList(List<Source> sources) {
-        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context,sources);
+        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context, sources);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         newsSourceRecyclerView.setLayoutManager(layoutManager);
         newsSourceRecyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -23,8 +23,8 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
 
     public NewsShelfListAdapter(Context context) {
         this.context = context;
-        this.injectPresenter = new InjectPresenter(context);
-        this.dataTable = injectPresenter.getDbInterface().getFavourites();
+        this.injectPresenter = new InjectPresenter();
+        this.dataTable = injectPresenter.getDbInterface(context).getFavourites();
     }
 
     @Override
@@ -34,19 +34,22 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        final int currentPosition = position;
+
         final String id = dataTable.get(position).get("id").toString();
         final String name = dataTable.get(position).get("name").toString();
         final String description = dataTable.get(position).get("description").toString();
         final String url = dataTable.get(position).get("url").toString();
+
         holder.nameTextView.setText(name);
         holder.descriptionTextView.setText(description);
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int status = injectPresenter.getDbInterface().removeFavourites(id);
-                if(status > 0){
-                    dataTable.remove(position);
+                int status = injectPresenter.getDbInterface(context).removeFavourites(id);
+                if (status > 0) {
+                    dataTable.remove(currentPosition);
                     notifyDataSetChanged();
                 }
             }
@@ -58,11 +61,11 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
         return dataTable.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView, descriptionTextView;
         ImageView deleteImageView;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             initializeWidgets(itemView);
         }

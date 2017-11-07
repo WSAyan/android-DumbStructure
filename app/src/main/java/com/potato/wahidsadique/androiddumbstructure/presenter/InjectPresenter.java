@@ -11,19 +11,12 @@ import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
  */
 
 public class InjectPresenter {
-    private ApiInterface apiInterface;
-    private DbInterface dbInterface;
-
-    public InjectPresenter(Context context) {
-        this.apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        this.dbInterface = new DbRepository(new DbCrud(),new DbConfig(context));
-    }
 
     public ApiInterface getApiInterface() {
-        return apiInterface;
+        return ApiClient.getClient().create(ApiInterface.class);
     }
 
-    public DbInterface getDbInterface() {
-        return dbInterface;
+    public DbInterface getDbInterface(Context context) {
+        return new DbRepository(new DbCrud(),new DbConfig(context));
     }
 }

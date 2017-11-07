@@ -27,7 +27,7 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
     public NewsSourceListAdapter(Context context, List<Source> sources) {
         this.context = context;
         this.sources = sources;
-        this.injectPresenter = new InjectPresenter(context);
+        this.injectPresenter = new InjectPresenter();
     }
 
     @Override
@@ -42,12 +42,13 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
         final String name = sources.get(position).getName();
         final String description = sources.get(position).getDescription();
         final String url = sources.get(position).getUrl();
+
         holder.nameTextView.setText(name);
         holder.descriptionTextView.setText(description);
         holder.favImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                injectPresenter.getDbInterface().markFavourites(id, name, description, url);
+                injectPresenter.getDbInterface(context).markFavourites(id, name, description, url);
                 notifyDataSetChanged();
             }
         });

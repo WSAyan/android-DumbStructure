@@ -18,7 +18,6 @@ import com.potato.wahidsadique.androiddumbstructure.ui.adapter.NewsShelfListAdap
 public class NewsShelfFragment extends Fragment {
     private RecyclerView newsShelfRecyclerView;
     private Context context;
-    private InjectPresenter injectPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +34,6 @@ public class NewsShelfFragment extends Fragment {
 
     private void initializeData() {
         context = getActivity();
-        injectPresenter = new InjectPresenter(context);
     }
 
 
