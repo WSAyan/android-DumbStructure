@@ -44,4 +44,11 @@ class DbRepository extends TableNames implements DbInterface {
         String whereClause = " id = ? ";
         return dbCrud.deleteData(tableName, whereClause, args, dbConfig.getSqLiteDatabase());
     }
+
+    @Override
+    public boolean checkFavourites(String id) {
+        String selectQuery = "SELECT * FROM " + TABLE_FAVOURITES + " WHERE id = ?";
+        String[] args = {id};
+        return (dbCrud.selectData(selectQuery, args, dbConfig.getSqLiteDatabase())).size() > 0;
+    }
 }

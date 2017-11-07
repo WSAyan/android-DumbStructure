@@ -12,4 +12,6 @@ public interface DbInterface {
     int markFavourites(String id, String name, String description, String url);
 
     int removeFavourites(String id);
+
+    boolean checkFavourites(String id);
 }
