@@ -3,7 +3,6 @@ package com.potato.wahidsadique.androiddumbstructure.ui.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,20 +39,15 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
     }
 
     @Override
-    public void onBindViewHolder(NewsSourceListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final NewsSourceListAdapter.ViewHolder holder, int position) {
         final String id = sources.get(position).getId();
         final String name = sources.get(position).getName();
         final String description = sources.get(position).getDescription();
         final String url = sources.get(position).getUrl();
-        final boolean isFavourite = injectPresenter.getDbInterface(context).checkFavourites(id);
-        Bitmap bitmap;
-        if (isFavourite) {
-            bitmap = BitmapFactory.decodeResource(context.getResources(), android.R.drawable.star_on);
-        } else {
-            bitmap = BitmapFactory.decodeResource(context.getResources(), android.R.drawable.star_off);
-        }
 
-        holder.favImageView.setImageBitmap(bitmap);
+        final boolean isFavourite = injectPresenter.getDbInterface(context).checkFavourites(id);
+
+        holder.favImageView.setImageBitmap(getMarkerBitmap(isFavourite));
         holder.nameTextView.setText(name);
         holder.descriptionTextView.setText(description);
         holder.favImageView.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +56,20 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
                 if (!isFavourite) {
                     injectPresenter.getDbInterface(context).markFavourites(id, name, description, url);
                     notifyDataSetChanged();
-                }else{
+                } else {
                     injectPresenter.getDbInterface(context).removeFavourites(id);
                     notifyDataSetChanged();
                 }
             }
         });
+    }
+
+    private Bitmap getMarkerBitmap(Boolean isFavourite) {
+        if (isFavourite) {
+            return BitmapFactory.decodeResource(context.getResources(), android.R.drawable.star_on);
+        } else {
+            return BitmapFactory.decodeResource(context.getResources(), android.R.drawable.star_off);
+        }
     }
 
     @Override
