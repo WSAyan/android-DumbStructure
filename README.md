@@ -25,7 +25,7 @@ Contains **DbHelper.java** class which extends the mighty **SQLiteOpenHelper** c
 - **model**	contains two sub packages
 1. binder:
 Most important package of the project. See this is why I call this a Dumb Structure because it does not contain any model class for db. Instead of model classes it contains ArrayList of HashMap extended in **DataTable.java** class. Each member of the list is a HashMap extended in DataRow.java class which maps columns with data for each and every rows of a table. Following code snippets will show you how you can use this classes to insert data in db.
-```
+```java
 @Override
     public int markFavourites(String id, String name, String description, String url) {
         DataTable dataTable = new DataTable(TABLE_FAVOURITES);
@@ -39,7 +39,7 @@ Most important package of the project. See this is why I call this a Dumb Struct
     }
 ```
 See the markFavourites method is implemented in **DbRepository.java** class which is called from an adapter class of **ui** package.Mark favourites inserts data via **DbCrud.java** classes insertData method into favourite table which contains id,name,description and url columns. **DbCrud.java** contains insert method like following snippet.
-```
+```java
     public int insertData(DataTable dataTable, SQLiteDatabase sqLiteDatabase) {
         long status = -500;
         String table = dataTable.getTableName();
@@ -61,11 +61,11 @@ contains pojo classes for http responses.
 - **presenter** contains two interfaces and two classes. The ApiInteface.java is for handling all Retrofit the http requests and DbInterface.java is for all the business logic methods and crud operation handlers which is implemented in **DbRepository.java** class. InjectPresenter.java is the heart and soul of this package. It is used as a link between ui and model.
 
 - **ui** package contains all the adapters,fragments and activities classes. If you need to get data via http request from any classes of ui package you can call them like this:
-```
+```java
 Call<Sources> call = injectPresenter.getApiInterface().getNewsSources("en");
 ```
 And If you need to run any crud operation like updating or inserting data to db you can do it like this:        
-```
+```java
 injectPresenter.getDbInterface(context).markFavourites(id, name, description, url);
 ```
 
