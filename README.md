@@ -15,14 +15,13 @@ The main goal here is to separate the ui classes like Activities or Fragments fr
 4. ui
 
 ### Package Details
-
 - **config:** contains two sub packages
     1. api:
         Contains **ApiClient.java** class which creates Retrofit instance.
     2. db:
         Contains **DbHelper.java** class which extends the mighty **SQLiteOpenHelper** class. Now our goal is to separate this from ui           package classes completely and keep this class untouched from presenter. For that **DbConfig.java** is used to inject  **DbHelper.java** through instantiating that. DbCrud.java class contains four methods which executes four basic crud operations select,insert,update,delete and make a dataset which is in model package. 
 
-- **model:**	contains two sub packages
+- **model:** contains two sub packages
     1. binder:
         Most important package of the project. See this is why I call this a Dumb Structure because it does not contain any model class for db. Instead of model classes it contains ArrayList of HashMap extended in **DataTable.java** class. Each member of the list is a HashMap extended in **DataRow.java** class which maps columns with data for each and every rows of a table. Following code snippets will show you how you can use this classes to insert data in db.
         ```java
@@ -62,21 +61,21 @@ The main goal here is to separate the ui classes like Activities or Fragments fr
 - **presenter:** contains two interfaces and two classes. The **ApiInteface.java** is for handling all Retrofit the http requests and DbInterface.java is for all the business logic methods and crud operation handlers which is implemented in **DbRepository.java** class. InjectPresenter.java is the heart and soul of this package. It is used as a link between ui and model.
 
 - **ui:** package contains all the adapters,fragments and activities classes. If you need to get data via http request from any classes of ui package you can call them like this:
-```java
-Call<Sources> call = injectPresenter.getApiInterface().getNewsSources("en");
-```
-And If you need to run any crud operation like updating or inserting data to db you can do it like this:
-```java
-injectPresenter.getDbInterface(context).markFavourites(id, name, description, url);
-```
+   ```java
+   Call<Sources> call = injectPresenter.getApiInterface().getNewsSources("en");
+   ```
+   And If you need to run any crud operation like updating or inserting data to db you can do it like this:
+   ```java
+   injectPresenter.getDbInterface(context).markFavourites(id, name, description, url);
+   ```
 
 ## Running the tests
 
 
 ## Built With
-* [Android Studio](https://developer.android.com/studio/index.html) – IDE used
-* [Gradle](https://gradle.org/) - Dependency Management
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [Android Studio](https://developer.android.com/studio/index.html) – IDE 
+* [Gradle](https://gradle.org/) - Dependency 
+* [Maven](https://maven.apache.org/) - Dependency 
 
 ## Contributing
 
