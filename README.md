@@ -1,6 +1,6 @@
 # AndroidDumbStructure
 
-This is a sample project using simple project structure for typical android apps.
+This is a sample project using a simple project structure for typical android apps.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ First of all by the term 'Typical Android Apps' I meant an app which handles  ht
 
 ### The Project Structure
 
-The main goal here is to separate the ui classes like Activities or Fragments from business logics and crud operations. Lets jump into structure. Mainly it contains four packages:
+The main goal here is to separate the ui classes like Activities or Fragments from business logics and crud operations. Lets jump into the structure. Mainly it contains four packages:
 1. config
 2. model
 3. presenter
