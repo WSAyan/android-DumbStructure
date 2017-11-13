@@ -4,7 +4,7 @@ This is a sample project using a simple project structure for typical android ap
 
 ## Getting Started
 
-First of all by the term 'Typical Android Apps' I meant an app which handles  http requests and SQLite database. In this sample project there is a list of Newspapers which comes from [News API](https://newsapi.org/) and there is a list of favourite newspapers which is saved on a SQLite db.  
+First of all by the term 'Typical Android Apps' I meant an app which handles  http requests and SQLite database. :neutral_face: In this sample project there is a list of Newspapers which comes from [News API](https://newsapi.org/) and there is a list of favourite newspapers which is saved on a SQLite db.  
 
 ### The Project Structure
 
@@ -13,6 +13,7 @@ The main goal here is to separate the ui classes like Activities or Fragments fr
     2. model
     3. presenter
     4. ui
+    5. utility
 
 <img src="https://user-images.githubusercontent.com/7785995/32697273-21eedac0-c7b7-11e7-9460-86181863d1a3.PNG" width="45%"></img> 
 
@@ -70,22 +71,14 @@ The main goal here is to separate the ui classes like Activities or Fragments fr
    ```java
    injectPresenter.getDbInterface(context).markFavourites(id, name, description, url);
    ```
-
-## Running the tests
-
-
+   
 ## Built With
 * [Android Studio](https://developer.android.com/studio/index.html) – IDE 
 * [Gradle](https://gradle.org/) - Dependency 
 * [Maven](https://maven.apache.org/) - Dependency 
 
-## Contributing
-
-
-## Versioning
-
 ## Authors
-
+* [Wahid Sadique Ayan](https://github.com/WSAyan)
 
 ## License
 
