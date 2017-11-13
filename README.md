@@ -8,12 +8,12 @@ First of all by the term 'Typical Android Apps' I meant an app which handles  ht
 
 ### The Project Structure
 
-The main goal here is to separate the ui classes like Activities or Fragments from business logics and crud operations. Lets jump into the structure. Mainly it contains four packages:
-    1. config
-    2. model
-    3. presenter
-    4. ui
-    5. utility
+The main goal here is to separate the ui classes like Activities or Fragments from business logics and crud operations. Lets jump into the structure. Mainly it contains five packages:      
+    1. config      
+    2. model      
+    3. presenter      
+    4. ui      
+    5. utility    
 
 
 <img src="https://user-images.githubusercontent.com/7785995/32697273-21eedac0-c7b7-11e7-9460-86181863d1a3.PNG" width="45%"></img> 
