@@ -15,6 +15,7 @@ The main goal here is to separate the ui classes like Activities or Fragments fr
     4. ui
     5. utility
 
+
 <img src="https://user-images.githubusercontent.com/7785995/32697273-21eedac0-c7b7-11e7-9460-86181863d1a3.PNG" width="45%"></img> 
 
 ### Package Details
