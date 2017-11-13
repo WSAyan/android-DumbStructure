@@ -1,6 +1,6 @@
 # AndroidDumbStructure
 
-This is a sample project using a simple project structure for typical android apps.
+This is a sample project using a simple project structure for typical android apps. :panda_face:
 
 ## Getting Started
 
