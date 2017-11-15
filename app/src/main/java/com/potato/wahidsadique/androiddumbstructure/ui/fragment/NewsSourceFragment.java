@@ -1,6 +1,7 @@
 package com.potato.wahidsadique.androiddumbstructure.ui.fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ public class NewsSourceFragment extends Fragment {
     private RecyclerView newsSourceRecyclerView;
     private Context context;
     private InjectPresenter injectPresenter;
+    private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +47,7 @@ public class NewsSourceFragment extends Fragment {
     private void initializeData() {
         context = getActivity();
         injectPresenter = new InjectPresenter();
+        progressDialog = new ProgressDialog(context);
     }
 
     private void createList(List<Source> sources) {
@@ -59,11 +62,14 @@ public class NewsSourceFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        progressDialog.setMessage("Loading");
+        progressDialog.show();
         Call<Sources> call = injectPresenter.getApiInterface().getNewsSources("en");
         call.enqueue(new Callback<Sources>() {
             @Override
             public void onResponse(Call<Sources> call, Response<Sources> response) {
                 createList(response.body().getSources());
+                progressDialog.dismiss();
             }
 
             @Override
