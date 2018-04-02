@@ -15,7 +15,9 @@ import android.view.ViewGroup;
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
-import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
+import com.potato.wahidsadique.androiddumbstructure.presenter.ApiInterface;
+import com.potato.wahidsadique.androiddumbstructure.presenter.AppPresenter;
+import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
 import com.potato.wahidsadique.androiddumbstructure.ui.adapter.NewsSourceListAdapter;
 
 import java.util.List;
@@ -28,8 +30,10 @@ import retrofit2.Response;
 public class NewsSourceFragment extends Fragment {
     private RecyclerView newsSourceRecyclerView;
     private Context context;
-    private InjectPresenter injectPresenter;
+    private DbInterface dbInterface;
+    private ApiInterface apiInterface;
     private ProgressDialog progressDialog;
+    private Call<Sources> sourcesCall;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,17 +45,19 @@ public class NewsSourceFragment extends Fragment {
     }
 
     private void initializeWidgets(View view) {
-        newsSourceRecyclerView = (RecyclerView) view.findViewById(R.id.source_list_recyclerView);
+        newsSourceRecyclerView = view.findViewById(R.id.source_list_recyclerView);
     }
 
     private void initializeData() {
         context = getActivity();
-        injectPresenter = new InjectPresenter();
+        AppPresenter appPresenter = new AppPresenter();
+        dbInterface = appPresenter.getDbInterface(context);
+        apiInterface = appPresenter.getApiInterface();
         progressDialog = new ProgressDialog(context);
     }
 
     private void createList(List<Source> sources) {
-        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context, sources);
+        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context, dbInterface, sources);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         newsSourceRecyclerView.setLayoutManager(layoutManager);
         newsSourceRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -62,10 +68,11 @@ public class NewsSourceFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         progressDialog.setMessage("Loading");
         progressDialog.show();
-        Call<Sources> call = injectPresenter.getApiInterface().getNewsSources("en");
-        call.enqueue(new Callback<Sources>() {
+        sourcesCall = apiInterface.getNewsSources("en");
+        sourcesCall.enqueue(new Callback<Sources>() {
             @Override
             public void onResponse(Call<Sources> call, Response<Sources> response) {
                 createList(response.body().getSources());
@@ -74,7 +81,7 @@ public class NewsSourceFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Sources> call, Throwable t) {
-
+                progressDialog.dismiss();
             }
         });
     }
@@ -92,10 +99,14 @@ public class NewsSourceFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        progressDialog.dismiss();
+        sourcesCall.cancel();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        progressDialog.dismiss();
+        sourcesCall.cancel();
     }
 }

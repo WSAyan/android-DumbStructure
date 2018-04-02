@@ -12,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
-import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
+import com.potato.wahidsadique.androiddumbstructure.presenter.AppPresenter;
+import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
 import com.potato.wahidsadique.androiddumbstructure.ui.adapter.NewsShelfListAdapter;
 
 public class NewsShelfFragment extends Fragment {
     private RecyclerView newsShelfRecyclerView;
     private Context context;
+    private DbInterface dbInterface;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,16 +31,18 @@ public class NewsShelfFragment extends Fragment {
     }
 
     private void initializeWidgets(View view) {
-        newsShelfRecyclerView = (RecyclerView) view.findViewById(R.id.shelf_list_recyclerView);
+        newsShelfRecyclerView = view.findViewById(R.id.shelf_list_recyclerView);
     }
 
     private void initializeData() {
         context = getActivity();
+        AppPresenter appPresenter = new AppPresenter();
+        dbInterface = appPresenter.getDbInterface(context);
     }
 
 
     private void createList() {
-        NewsShelfListAdapter newsShelfListAdapter = new NewsShelfListAdapter(context);
+        NewsShelfListAdapter newsShelfListAdapter = new NewsShelfListAdapter(dbInterface);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         newsShelfRecyclerView.setLayoutManager(layoutManager);
         newsShelfRecyclerView.setItemAnimator(new DefaultItemAnimator());

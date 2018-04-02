@@ -12,9 +12,8 @@ import android.widget.TextView;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
-import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
+import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +22,13 @@ import java.util.List;
 
 public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAdapter.ViewHolder> {
     private Context context;
-    private List<Source> sources = new ArrayList<>();
-    private InjectPresenter injectPresenter;
+    private List<Source> sources;
+    private DbInterface dbInterface;
 
-    public NewsSourceListAdapter(Context context, List<Source> sources) {
+    public NewsSourceListAdapter(Context context, DbInterface dbInterface, List<Source> sources) {
         this.context = context;
         this.sources = sources;
-        this.injectPresenter = new InjectPresenter();
+        this.dbInterface = dbInterface;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
         final String description = sources.get(position).getDescription();
         final String url = sources.get(position).getUrl();
 
-        final boolean isFavourite = injectPresenter.getDbInterface(context).checkFavourites(id);
+        final boolean isFavourite = dbInterface.checkFavourites(id);
 
         holder.favImageView.setImageBitmap(getMarkerBitmap(isFavourite));
         holder.nameTextView.setText(name);
@@ -54,10 +53,10 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
             @Override
             public void onClick(View v) {
                 if (!isFavourite) {
-                    injectPresenter.getDbInterface(context).markFavourites(id, name, description, url);
+                    dbInterface.markFavourites(id, name, description, url);
                     notifyDataSetChanged();
                 } else {
-                    injectPresenter.getDbInterface(context).removeFavourites(id);
+                    dbInterface.removeFavourites(id);
                     notifyDataSetChanged();
                 }
             }

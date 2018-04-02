@@ -1,6 +1,5 @@
 package com.potato.wahidsadique.androiddumbstructure.ui.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,21 +9,19 @@ import android.widget.TextView;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
-import com.potato.wahidsadique.androiddumbstructure.presenter.InjectPresenter;
+import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
 
 /**
  * Created by wahid.sadique on 9/14/2017.
  */
 
 public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdapter.ViewHolder> {
-    private Context context;
-    private InjectPresenter injectPresenter;
-    private DataTable dataTable = new DataTable();
+    private DataTable dataTable;
+    private DbInterface dbInterface;
 
-    public NewsShelfListAdapter(Context context) {
-        this.context = context;
-        this.injectPresenter = new InjectPresenter();
-        this.dataTable = injectPresenter.getDbInterface(context).getFavourites();
+    public NewsShelfListAdapter(DbInterface dbInterface) {
+        this.dbInterface = dbInterface;
+        this.dataTable = dbInterface.getFavourites();
     }
 
     @Override
@@ -47,7 +44,7 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int status = injectPresenter.getDbInterface(context).removeFavourites(id);
+                int status = dbInterface.removeFavourites(id);
                 if (status > 0) {
                     dataTable.remove(currentPosition);
                     notifyDataSetChanged();
@@ -71,9 +68,9 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
         }
 
         private void initializeWidgets(View itemView) {
-            nameTextView = (TextView) itemView.findViewById(R.id.shelf_item_name_textView);
-            descriptionTextView = (TextView) itemView.findViewById(R.id.shelf_item_description_textView);
-            deleteImageView = (ImageView) itemView.findViewById(R.id.shelf_item_delete_imageView);
+            nameTextView = itemView.findViewById(R.id.shelf_item_name_textView);
+            descriptionTextView = itemView.findViewById(R.id.shelf_item_description_textView);
+            deleteImageView = itemView.findViewById(R.id.shelf_item_delete_imageView);
         }
     }
 }

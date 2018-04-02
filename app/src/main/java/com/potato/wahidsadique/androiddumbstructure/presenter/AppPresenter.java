@@ -10,7 +10,7 @@ import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
  * Created by wahid.sadique on 9/12/2017.
  */
 
-public class InjectPresenter {
+public class AppPresenter {
 
     public ApiInterface getApiInterface() {
         return ApiClient.getClient().create(ApiInterface.class);
