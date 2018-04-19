@@ -1,6 +1,6 @@
 package com.potato.wahidsadique.androiddumbstructure.presenter;
 
-import com.potato.wahidsadique.androiddumbstructure.config.db.TableNames;
+import com.potato.wahidsadique.androiddumbstructure.config.db.DbTables;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataRow;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
 import com.potato.wahidsadique.androiddumbstructure.config.db.DbCrud;
@@ -10,7 +10,7 @@ import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
  * Created by wahid.sadique on 9/11/2017.
  */
 
-class DbRepository extends TableNames implements DbInterface {
+class DbRepository implements DbInterface {
     private DbCrud dbCrud;
     private DbConfig dbConfig;
 
@@ -21,13 +21,13 @@ class DbRepository extends TableNames implements DbInterface {
 
     @Override
     public DataTable getFavourites() {
-        String selectQuery = "SELECT * FROM " + TABLE_FAVOURITES;
+        String selectQuery = "SELECT * FROM " + DbTables.FAVOURITES_TABLE;
         return dbCrud.selectData(selectQuery, null, dbConfig.getSqLiteDatabase());
     }
 
     @Override
     public int markFavourites(String id, String name, String description, String url) {
-        DataTable dataTable = new DataTable(TABLE_FAVOURITES);
+        DataTable dataTable = new DataTable(DbTables.FAVOURITES_TABLE);
         DataRow dataRow = new DataRow();
         dataRow.add("id", id);
         dataRow.add("name", name);
@@ -39,7 +39,7 @@ class DbRepository extends TableNames implements DbInterface {
 
     @Override
     public int removeFavourites(String id) {
-        String tableName = TABLE_FAVOURITES;
+        String tableName = DbTables.FAVOURITES_TABLE;
         String[] args = {id};
         String whereClause = " id = ? ";
         return dbCrud.deleteData(tableName, whereClause, args, dbConfig.getSqLiteDatabase());
@@ -47,7 +47,7 @@ class DbRepository extends TableNames implements DbInterface {
 
     @Override
     public boolean checkFavourites(String id) {
-        String selectQuery = "SELECT * FROM " + TABLE_FAVOURITES + " WHERE id = ?";
+        String selectQuery = "SELECT * FROM " + DbTables.FAVOURITES_TABLE + " WHERE id = ?";
         String[] args = {id};
         return (dbCrud.selectData(selectQuery, args, dbConfig.getSqLiteDatabase())).size() > 0;
     }

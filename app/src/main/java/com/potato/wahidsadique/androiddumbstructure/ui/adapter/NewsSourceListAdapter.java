@@ -86,9 +86,9 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
         }
 
         private void initializeWidgets(View itemView) {
-            nameTextView = (TextView) itemView.findViewById(R.id.source_item_name_textView);
-            descriptionTextView = (TextView) itemView.findViewById(R.id.source_item_description_textView);
-            favImageView = (ImageView) itemView.findViewById(R.id.source_item_fav_imageView);
+            nameTextView = itemView.findViewById(R.id.source_item_name_textView);
+            descriptionTextView = itemView.findViewById(R.id.source_item_description_textView);
+            favImageView = itemView.findViewById(R.id.source_item_fav_imageView);
         }
     }
 }

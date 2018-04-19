@@ -19,6 +19,7 @@ import com.potato.wahidsadique.androiddumbstructure.presenter.ApiInterface;
 import com.potato.wahidsadique.androiddumbstructure.presenter.AppPresenter;
 import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
 import com.potato.wahidsadique.androiddumbstructure.ui.adapter.NewsSourceListAdapter;
+import com.potato.wahidsadique.androiddumbstructure.utility.GlobalConstants;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class NewsSourceFragment extends Fragment {
     private ApiInterface apiInterface;
     private ProgressDialog progressDialog;
     private Call<Sources> sourcesCall;
+    private List<Source> sources;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +56,7 @@ public class NewsSourceFragment extends Fragment {
         dbInterface = appPresenter.getDbInterface(context);
         apiInterface = appPresenter.getApiInterface();
         progressDialog = new ProgressDialog(context);
+        downloadList();
     }
 
     private void createList(List<Source> sources) {
@@ -65,25 +68,39 @@ public class NewsSourceFragment extends Fragment {
         newsSourceListAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
+    private void downloadList() {
         progressDialog.setMessage("Loading");
         progressDialog.show();
         sourcesCall = apiInterface.getNewsSources("en");
         sourcesCall.enqueue(new Callback<Sources>() {
             @Override
             public void onResponse(Call<Sources> call, Response<Sources> response) {
-                createList(response.body().getSources());
+                if(response.code() == GlobalConstants.HTTP_STATUS_OK){
+                    sources = response.body().getSources();
+                    createList(response.body().getSources());
+                }
                 progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<Sources> call, Throwable t) {
                 progressDialog.dismiss();
+                sourcesCall.cancel();
             }
         });
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && sources != null) {
+            createList(sources);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -99,14 +116,22 @@ public class NewsSourceFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        progressDialog.dismiss();
-        sourcesCall.cancel();
+        flush();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        progressDialog.dismiss();
-        sourcesCall.cancel();
+        flush();
+
+    }
+
+    private void flush() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
+        if (sourcesCall != null) {
+            sourcesCall.cancel();
+        }
     }
 }

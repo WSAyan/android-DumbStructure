@@ -16,7 +16,9 @@ class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(CreateQueries.CREATE_FAVOURITES);
+        for (String query : DbTables.CREATE_TABLES) {
+            sqLiteDatabase.execSQL(query);
+        }
     }
 
     @Override

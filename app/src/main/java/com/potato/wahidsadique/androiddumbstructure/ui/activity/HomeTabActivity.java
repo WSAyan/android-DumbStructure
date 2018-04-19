@@ -29,9 +29,9 @@ public class HomeTabActivity extends AppCompatActivity {
     }
 
     private void initializeWidgets() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        toolbar = findViewById(R.id.toolbar);
+        mViewPager = findViewById(R.id.container);
+        tabLayout = findViewById(R.id.tabs);
     }
 
     private void initializeData() {
