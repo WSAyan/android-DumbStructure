@@ -59,8 +59,8 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, descriptionTextView;
-        ImageView deleteImageView;
+        protected TextView nameTextView, descriptionTextView;
+        protected ImageView deleteImageView;
 
         ViewHolder(View itemView) {
             super(itemView);

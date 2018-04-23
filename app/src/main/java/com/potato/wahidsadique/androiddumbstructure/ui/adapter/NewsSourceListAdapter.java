@@ -77,8 +77,8 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, descriptionTextView;
-        ImageView favImageView;
+        protected TextView nameTextView, descriptionTextView;
+        protected ImageView favImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
