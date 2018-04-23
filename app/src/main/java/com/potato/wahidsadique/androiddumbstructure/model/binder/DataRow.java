@@ -9,10 +9,6 @@ import java.util.HashMap;
  */
 
 public class DataRow extends HashMap<String, Object> {
-    public DataRow() {
-        super();
-    }
-
     public Object add(String column, Object value) {
         return put(column, value);
     }

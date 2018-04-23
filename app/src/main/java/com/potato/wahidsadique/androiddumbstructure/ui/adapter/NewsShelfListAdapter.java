@@ -37,7 +37,7 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
         final String id = dataTable.get(position).get("id").toString();
         final String name = dataTable.get(position).get("name").toString();
         final String description = dataTable.get(position).get("description").toString();
-        final String url = dataTable.get(position).get("url").toString();
+        //final String url = dataTable.get(position).get("url").toString();
 
         holder.nameTextView.setText(name);
         holder.descriptionTextView.setText(description);

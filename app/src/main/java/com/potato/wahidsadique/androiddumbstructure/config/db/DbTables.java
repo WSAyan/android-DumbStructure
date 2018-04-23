@@ -9,7 +9,7 @@ public final class DbTables {
     public static final String EXAMPLE_TABLE = "example";
     public static final String ANOTHER_EXAMPLE_TABLE = "another_example";
 
-    static final String[] CREATE_TABLES = {
+    protected static final String[] CREATE_TABLES = {
             "   CREATE TABLE " + FAVOURITES_TABLE + " (" +
                     "   id varchar(50) UNIQUE, " +
                     "   name varchar(50), " +

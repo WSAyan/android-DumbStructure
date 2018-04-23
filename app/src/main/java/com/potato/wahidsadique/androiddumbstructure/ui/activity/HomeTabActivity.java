@@ -48,7 +48,7 @@ public class HomeTabActivity extends AppCompatActivity {
     }
 
     private void eventListeners() {
-
+        //event listeners here
     }
 
     @Override

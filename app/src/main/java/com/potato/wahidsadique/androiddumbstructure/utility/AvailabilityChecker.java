@@ -2,7 +2,6 @@ package com.potato.wahidsadique.androiddumbstructure.utility;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 

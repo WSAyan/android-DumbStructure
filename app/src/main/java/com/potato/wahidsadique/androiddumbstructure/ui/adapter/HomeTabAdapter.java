@@ -32,6 +32,9 @@ public class HomeTabAdapter extends FragmentPagerAdapter {
             case 1:
                 fragment = new NewsShelfFragment();
                 break;
+            default:
+                fragment = null;
+                break;
         }
         return fragment;
     }
@@ -53,7 +56,8 @@ public class HomeTabAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.news_tab);
             case 1:
                 return context.getString(R.string.shelf_tab);
+            default:
+                return null;
         }
-        return null;
     }
 }
