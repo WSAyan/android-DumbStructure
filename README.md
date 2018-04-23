@@ -1,5 +1,7 @@
 # AndroidDumbStructure
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc9b28ba030b43068014734a5902f217)](https://app.codacy.com/app/wsayan28/AndroidDumbStructure?utm_source=github.com&utm_medium=referral&utm_content=WSAyan/AndroidDumbStructure&utm_campaign=badger)
+
 This is a sample project using a simple project structure for typical android apps. :panda_face:
 
 ## Getting Started
