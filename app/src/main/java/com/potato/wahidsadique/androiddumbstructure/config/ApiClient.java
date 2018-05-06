@@ -32,9 +32,9 @@ public class ApiClient {
         if (okHttpClient == null) {
             okHttpClient = new OkHttpClient()
                     .newBuilder()
-                    .connectTimeout(GlobalConstants.HTTP_TIMEOUT, TimeUnit.MINUTES)
-                    .readTimeout(GlobalConstants.HTTP_TIMEOUT, TimeUnit.MINUTES)
-                    .writeTimeout(GlobalConstants.HTTP_TIMEOUT, TimeUnit.MINUTES)
+                    .connectTimeout(GlobalConstants.REQUEST_TIMEOUT, TimeUnit.MINUTES)
+                    .readTimeout(GlobalConstants.REQUEST_TIMEOUT, TimeUnit.MINUTES)
+                    .writeTimeout(GlobalConstants.REQUEST_TIMEOUT, TimeUnit.MINUTES)
                     .build();
         }
         return okHttpClient;
