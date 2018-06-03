@@ -17,6 +17,6 @@ public class AppPresenter {
     }
 
     public DbInterface getDbInterface(Context context) {
-        return new DbRepository(new DbCrud(),new DbConfig(context));
+        return new DbRepository(new DbCrud(), new DbConfig(context));
     }
 }

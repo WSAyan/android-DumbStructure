@@ -5,6 +5,12 @@ package com.potato.wahidsadique.androiddumbstructure.utility;
  */
 
 public final class GlobalConstants {
+    public static final String DB_NAME = "db_name";
+    public static final int DB_VERSION = 3;
+
+    public static final String SHARED_PREF_NAME = "spf_name";
+    public static final int SHARED_PREF_MODE = 0;
+
     public static final String BASE_URL = "https://newsapi.org/";
     public static final int PAGINATION_DEFAULT_PAGE = 1;
     public static final Long REQUEST_TIMEOUT = 10L;

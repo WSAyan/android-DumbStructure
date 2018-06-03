@@ -8,14 +8,12 @@ import android.content.SharedPreferences;
  */
 
 public class SessionManager {
-    private static final int PRIVATE_MODE = 0;
-    private static final String PREF_NAME = "NAME";
     private static final String AUTH_CODE = "AUTH_CODE";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
     public SessionManager(Context context) {
-        sharedPreferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        sharedPreferences = context.getSharedPreferences(GlobalConstants.SHARED_PREF_NAME, GlobalConstants.SHARED_PREF_MODE);
         editor = sharedPreferences.edit();
     }
 
