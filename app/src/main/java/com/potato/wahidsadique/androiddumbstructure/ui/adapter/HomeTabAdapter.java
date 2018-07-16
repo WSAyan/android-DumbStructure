@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
-import com.potato.wahidsadique.androiddumbstructure.ui.fragment.NewsSourceFragment;
 import com.potato.wahidsadique.androiddumbstructure.ui.fragment.NewsShelfFragment;
+import com.potato.wahidsadique.androiddumbstructure.ui.fragment.NewsSourceFragment;
 
 /**
  * Created by wahid.sadique on 8/30/2017.

@@ -1,6 +1,7 @@
 package com.potato.wahidsadique.androiddumbstructure.model.binder;
 
 import android.content.ContentValues;
+
 import java.util.HashMap;
 
 

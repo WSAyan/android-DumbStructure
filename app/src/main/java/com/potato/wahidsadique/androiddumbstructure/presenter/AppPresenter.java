@@ -3,9 +3,9 @@ package com.potato.wahidsadique.androiddumbstructure.presenter;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.potato.wahidsadique.androiddumbstructure.config.db.DbCrud;
 import com.potato.wahidsadique.androiddumbstructure.config.ApiClient;
 import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
+import com.potato.wahidsadique.androiddumbstructure.config.db.DbCrud;
 import com.potato.wahidsadique.androiddumbstructure.utility.DbUtils;
 import com.potato.wahidsadique.androiddumbstructure.utility.SharedPrefUtils;
 import com.potato.wahidsadique.androiddumbstructure.utility.WebUtils;

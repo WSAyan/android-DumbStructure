@@ -1,7 +1,5 @@
 package com.potato.wahidsadique.androiddumbstructure.config;
 
-import com.potato.wahidsadique.androiddumbstructure.utility.GlobalConstants;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;

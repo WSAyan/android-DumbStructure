@@ -1,10 +1,10 @@
 package com.potato.wahidsadique.androiddumbstructure.presenter;
 
+import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
+import com.potato.wahidsadique.androiddumbstructure.config.db.DbCrud;
 import com.potato.wahidsadique.androiddumbstructure.config.db.DbTables;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataRow;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
-import com.potato.wahidsadique.androiddumbstructure.config.db.DbCrud;
-import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
 
 /**
  * Created by wahid.sadique on 9/11/2017.

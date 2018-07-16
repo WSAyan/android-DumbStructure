@@ -16,11 +16,10 @@ import android.view.ViewGroup;
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
-import com.potato.wahidsadique.androiddumbstructure.presenter.IApiInteractor;
 import com.potato.wahidsadique.androiddumbstructure.presenter.AppPresenter;
+import com.potato.wahidsadique.androiddumbstructure.presenter.IApiInteractor;
 import com.potato.wahidsadique.androiddumbstructure.presenter.IDbInteractor;
 import com.potato.wahidsadique.androiddumbstructure.ui.adapter.NewsSourceListAdapter;
-import com.potato.wahidsadique.androiddumbstructure.utility.GlobalConstants;
 import com.potato.wahidsadique.androiddumbstructure.utility.HttpStatusCodes;
 import com.potato.wahidsadique.androiddumbstructure.utility.SharedPrefUtils;
 
