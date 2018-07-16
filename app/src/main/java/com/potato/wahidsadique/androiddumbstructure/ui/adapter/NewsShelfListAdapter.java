@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.binder.DataTable;
-import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
+import com.potato.wahidsadique.androiddumbstructure.presenter.IDbInteractor;
 
 /**
  * Created by wahid.sadique on 9/14/2017.
@@ -17,11 +17,11 @@ import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
 
 public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdapter.ViewHolder> {
     private DataTable dataTable;
-    private DbInterface dbInterface;
+    private IDbInteractor dbInteractor;
 
-    public NewsShelfListAdapter(DbInterface dbInterface) {
-        this.dbInterface = dbInterface;
-        this.dataTable = dbInterface.getFavourites();
+    public NewsShelfListAdapter(IDbInteractor dbInteractor) {
+        this.dbInteractor = dbInteractor;
+        this.dataTable = dbInteractor.getFavourites();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class NewsShelfListAdapter extends RecyclerView.Adapter<NewsShelfListAdap
         holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int status = dbInterface.removeFavourites(id);
+                int status = dbInteractor.removeFavourites(id);
                 if (status > 0) {
                     dataTable.remove(currentPosition);
                     notifyDataSetChanged();

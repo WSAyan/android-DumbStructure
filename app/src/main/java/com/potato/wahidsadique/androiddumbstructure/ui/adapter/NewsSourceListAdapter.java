@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
-import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
+import com.potato.wahidsadique.androiddumbstructure.presenter.IDbInteractor;
 
 import java.util.List;
 
@@ -23,12 +23,12 @@ import java.util.List;
 public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAdapter.ViewHolder> {
     private Context context;
     private List<Source> sources;
-    private DbInterface dbInterface;
+    private IDbInteractor dbInteractor;
 
-    public NewsSourceListAdapter(Context context, DbInterface dbInterface, List<Source> sources) {
+    public NewsSourceListAdapter(Context context, IDbInteractor dbInteractor, List<Source> sources) {
         this.context = context;
         this.sources = sources;
-        this.dbInterface = dbInterface;
+        this.dbInteractor = dbInteractor;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
         final String description = sources.get(position).getDescription();
         final String url = sources.get(position).getUrl();
 
-        final boolean isFavourite = dbInterface.checkFavourites(id);
+        final boolean isFavourite = dbInteractor.checkFavourites(id);
 
         holder.favImageView.setImageBitmap(getMarkerBitmap(isFavourite));
         holder.nameTextView.setText(name);
@@ -53,10 +53,10 @@ public class NewsSourceListAdapter extends RecyclerView.Adapter<NewsSourceListAd
             @Override
             public void onClick(View v) {
                 if (!isFavourite) {
-                    dbInterface.markFavourites(id, name, description, url);
+                    dbInteractor.markFavourites(id, name, description, url);
                     notifyDataSetChanged();
                 } else {
-                    dbInterface.removeFavourites(id);
+                    dbInteractor.removeFavourites(id);
                     notifyDataSetChanged();
                 }
             }

@@ -16,25 +16,25 @@ public class ApiClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient okHttpClient = null;
 
-    public static Retrofit getClient() {
+    public static Retrofit getClient(String baseUrl, Long requestTimeout) {
         if (retrofit == null) {
             retrofit = new Retrofit
                     .Builder()
-                    .client(getOkHttpClient())
-                    .baseUrl(GlobalConstants.BASE_URL)
+                    .client(getOkHttpClient(requestTimeout))
+                    .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
 
-    private static OkHttpClient getOkHttpClient() {
+    private static OkHttpClient getOkHttpClient(Long requestTimeout) {
         if (okHttpClient == null) {
             okHttpClient = new OkHttpClient()
                     .newBuilder()
-                    .connectTimeout(GlobalConstants.REQUEST_TIMEOUT, TimeUnit.MINUTES)
-                    .readTimeout(GlobalConstants.REQUEST_TIMEOUT, TimeUnit.MINUTES)
-                    .writeTimeout(GlobalConstants.REQUEST_TIMEOUT, TimeUnit.MINUTES)
+                    .connectTimeout(requestTimeout, TimeUnit.MINUTES)
+                    .readTimeout(requestTimeout, TimeUnit.MINUTES)
+                    .writeTimeout(requestTimeout, TimeUnit.MINUTES)
                     .build();
         }
         return okHttpClient;

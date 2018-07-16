@@ -10,11 +10,11 @@ import com.potato.wahidsadique.androiddumbstructure.config.db.DbConfig;
  * Created by wahid.sadique on 9/11/2017.
  */
 
-class DbRepository implements DbInterface {
+class DbInteractor implements IDbInteractor {
     private DbCrud dbCrud;
     private DbConfig dbConfig;
 
-    DbRepository(DbCrud dbCrud, DbConfig dbConfig) {
+    DbInteractor(DbCrud dbCrud, DbConfig dbConfig) {
         this.dbCrud = dbCrud;
         this.dbConfig = dbConfig;
     }

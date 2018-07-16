@@ -1,6 +1,7 @@
 package com.potato.wahidsadique.androiddumbstructure.ui.activity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,7 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.potato.wahidsadique.androiddumbstructure.R;
+import com.potato.wahidsadique.androiddumbstructure.presenter.AppPresenter;
 import com.potato.wahidsadique.androiddumbstructure.ui.adapter.HomeTabAdapter;
+import com.potato.wahidsadique.androiddumbstructure.utility.GlobalConstants;
+import com.potato.wahidsadique.androiddumbstructure.utility.SharedPrefUtils;
 
 public class HomeTabActivity extends AppCompatActivity {
     private HomeTabAdapter mSectionsPagerAdapter;
@@ -18,6 +22,7 @@ public class HomeTabActivity extends AppCompatActivity {
     private Context context;
     private Toolbar toolbar;
     private TabLayout tabLayout;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +43,17 @@ public class HomeTabActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         context = this;
-        mSectionsPagerAdapter = new HomeTabAdapter(getSupportFragmentManager(),context);
+        mSectionsPagerAdapter = new HomeTabAdapter(getSupportFragmentManager(), context);
 
         assert mViewPager != null;
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         assert tabLayout != null;
         tabLayout.setupWithViewPager(mViewPager);
+
+        sharedPreferences = new AppPresenter().getSharedPrefInterface(context);
+        sharedPreferences.edit().putString(SharedPrefUtils._API_KEY, GlobalConstants.API_KEY).apply();
+        sharedPreferences.edit().putString(SharedPrefUtils._LANGUAGE, GlobalConstants.ENGLISH).apply();
     }
 
     private void eventListeners() {

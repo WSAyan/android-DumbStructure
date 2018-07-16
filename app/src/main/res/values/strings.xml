@@ -8,4 +8,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Pending Messages-->
+    <string name="progress_dialog_loading">Loading</string>
+
+    <!--Error Messages-->
+    <string name="dialog_error">Error</string>
+
+    <!--Success Messages-->
+    <string name="dialog_success">Success</string>>
 </resources>

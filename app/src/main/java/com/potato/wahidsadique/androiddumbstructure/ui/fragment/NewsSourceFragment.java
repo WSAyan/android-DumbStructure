@@ -3,6 +3,7 @@ package com.potato.wahidsadique.androiddumbstructure.ui.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,11 +16,13 @@ import android.view.ViewGroup;
 import com.potato.wahidsadique.androiddumbstructure.R;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Source;
 import com.potato.wahidsadique.androiddumbstructure.model.pojo.Sources;
-import com.potato.wahidsadique.androiddumbstructure.presenter.ApiInterface;
+import com.potato.wahidsadique.androiddumbstructure.presenter.IApiInteractor;
 import com.potato.wahidsadique.androiddumbstructure.presenter.AppPresenter;
-import com.potato.wahidsadique.androiddumbstructure.presenter.DbInterface;
+import com.potato.wahidsadique.androiddumbstructure.presenter.IDbInteractor;
 import com.potato.wahidsadique.androiddumbstructure.ui.adapter.NewsSourceListAdapter;
 import com.potato.wahidsadique.androiddumbstructure.utility.GlobalConstants;
+import com.potato.wahidsadique.androiddumbstructure.utility.HttpStatusCodes;
+import com.potato.wahidsadique.androiddumbstructure.utility.SharedPrefUtils;
 
 import java.util.List;
 
@@ -31,11 +34,12 @@ import retrofit2.Response;
 public class NewsSourceFragment extends Fragment {
     private RecyclerView newsSourceRecyclerView;
     private Context context;
-    private DbInterface dbInterface;
-    private ApiInterface apiInterface;
+    private IDbInteractor dbInteractor;
+    private IApiInteractor apiInteractor;
     private ProgressDialog progressDialog;
     private Call<Sources> sourcesCall;
     private List<Source> sources;
+    private SharedPreferences sharedPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,14 +57,15 @@ public class NewsSourceFragment extends Fragment {
     private void initializeData() {
         context = getActivity();
         AppPresenter appPresenter = new AppPresenter();
-        dbInterface = appPresenter.getDbInterface(context);
-        apiInterface = appPresenter.getApiInterface();
+        dbInteractor = appPresenter.getDbInterface(context);
+        apiInteractor = appPresenter.getApiInterface();
+        sharedPref = appPresenter.getSharedPrefInterface(context);
         progressDialog = new ProgressDialog(context);
         downloadList();
     }
 
     private void createList(List<Source> sources) {
-        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context, dbInterface, sources);
+        NewsSourceListAdapter newsSourceListAdapter = new NewsSourceListAdapter(context, dbInteractor, sources);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         newsSourceRecyclerView.setLayoutManager(layoutManager);
         newsSourceRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -69,15 +74,15 @@ public class NewsSourceFragment extends Fragment {
     }
 
     private void downloadList() {
-        progressDialog.setMessage("Loading");
+        progressDialog.setMessage(context.getString(R.string.progress_dialog_loading));
         progressDialog.show();
-        sourcesCall = apiInterface.getNewsSources("en");
+        sourcesCall = apiInteractor.getNewsSources(sharedPref.getString(SharedPrefUtils._API_KEY, null), sharedPref.getString(SharedPrefUtils._LANGUAGE, null));
         sourcesCall.enqueue(new Callback<Sources>() {
             @Override
             public void onResponse(Call<Sources> call, Response<Sources> response) {
-                if(response.code() == GlobalConstants.HTTP_STATUS_OK){
+                if (response.code() == HttpStatusCodes.OK) {
                     sources = response.body().getSources();
-                    createList(response.body().getSources());
+                    createList(sources);
                 }
                 progressDialog.dismiss();
             }
@@ -88,6 +93,7 @@ public class NewsSourceFragment extends Fragment {
                 sourcesCall.cancel();
             }
         });
+
     }
 
     @Override
@@ -134,4 +140,5 @@ public class NewsSourceFragment extends Fragment {
             sourcesCall.cancel();
         }
     }
+
 }
