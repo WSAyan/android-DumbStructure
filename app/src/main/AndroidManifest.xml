@@ -26,6 +26,7 @@
             android:name=".ui.activity.HomeTabActivity"
             android:label="@string/title_activity_home_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activity.NewsActivity"></activity>
     </application>
 
 </manifest>
